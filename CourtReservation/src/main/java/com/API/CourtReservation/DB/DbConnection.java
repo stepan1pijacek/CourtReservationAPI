@@ -1,10 +1,12 @@
 package com.API.CourtReservation.DB;
 
+import com.API.CourtReservation.Config.MySQLConfig;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DbConnection extends MySQLConfig{
+public class DbConnection extends MySQLConfig {
     private static volatile Connection dbConnection;
 
     public DbConnection(){

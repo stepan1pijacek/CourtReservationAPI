@@ -1,4 +1,4 @@
-package com.API.CourtReservation.DB;
+package com.API.CourtReservation.Config;
 
 public class MySQLConfig {
     protected static String MYSQL_HOST = "localhost";

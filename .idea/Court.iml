@@ -6,5 +6,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="com.elepy:elepy-hibernate:2.5.3" level="project" />
+    <orderEntry type="library" name="spring:spring-web:1.0.2" level="project" />
   </component>
 </module>
