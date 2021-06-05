@@ -1,7 +1,7 @@
 package com.API.CourtReservation.CRUD;
 
 import com.API.CourtReservation.DB.DbConnection;
-import com.API.CourtReservation.ICRUDE.ICreate;
+import com.API.CourtReservation.Interfaces.ICreate;
 import com.API.CourtReservation.Models.Courts;
 import com.API.CourtReservation.Models.Reservations;
 
@@ -10,19 +10,19 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Create implements ICreate {
-
     //TODO: implement phone number check, if phone number exists once, update current newest reservation 204 , else create 201
     @Override
     public boolean CreateReservation(Reservations reservations) {
         Connection connection = DbConnection.getDbConnection();
-        String insert = "INSERT INTO reservation (CourtID, TimeInterval, GameType, PhoneNumber, Surname) VALUES (?, ?, ?, ?, ?)";
+        String insert = "INSERT INTO reservation (CourtID, TimeInterval, GameType, PhoneNumber, Surname, Price) VALUES (?, ?, ?, ?, ?, ?)";
 
         try(PreparedStatement prSmt = connection.prepareStatement(insert)){
             prSmt.setInt(1, reservations.getCourts());
             prSmt.setInt(2,reservations.getTime());
             prSmt.setBoolean(3,reservations.getGameType());
-            prSmt.setString(4, reservations.getPhoneNumber());
+            prSmt.setInt(4, reservations.getPhoneNumber());
             prSmt.setString(5, reservations.getSurname());
+            prSmt.setDouble(6,reservations.getPrice());
 
             prSmt.execute();
             return true;

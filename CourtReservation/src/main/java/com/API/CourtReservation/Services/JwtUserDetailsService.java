@@ -1,4 +1,4 @@
-package com.API.CourtReservation.Utils;
+package com.API.CourtReservation.Services;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

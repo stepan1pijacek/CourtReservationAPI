@@ -1,7 +1,7 @@
-package com.API.CourtReservation.ICRUDE;
+package com.API.CourtReservation.Interfaces;
 
 public interface IDelete {
-    boolean DeleteReservationByPhone(String phoneNumber);
+    boolean DeleteReservationByPhone(int phoneNumber);
     boolean DeleteReservationByCourt(int courtID);
     boolean DeleteCourt(int courtID);
 }

@@ -3,7 +3,7 @@ package com.API.CourtReservation.Controllers;
 import com.API.CourtReservation.Utils.JwtRequest;
 import com.API.CourtReservation.Utils.JwtResponse;
 import com.API.CourtReservation.Utils.JwtTokenUtil;
-import com.API.CourtReservation.Utils.JwtUserDetailsService;
+import com.API.CourtReservation.Services.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

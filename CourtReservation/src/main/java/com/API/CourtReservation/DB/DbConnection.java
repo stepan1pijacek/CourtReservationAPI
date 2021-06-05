@@ -19,7 +19,7 @@ public class DbConnection extends MySQLConfig {
                 if(dbConnection == null){
                     try{
                         Class.forName("com.mysql.cj.jdbc.Driver");
-                        dbConnection = DriverManager.getConnection("jdbc:mysql://"+MYSQL_HOST+"/"+MYSQL_DATABASE+"?user="+MYSQL_USER+"&password="+MYSQL_PWD);
+                        dbConnection = DriverManager.getConnection("jdbc:mysql://localhost/courtreservation?user=root&password=");
                     } catch (ClassNotFoundException | SQLException e) {
                         e.printStackTrace();
                     }

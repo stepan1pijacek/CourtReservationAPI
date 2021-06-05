@@ -1,4 +1,4 @@
-package com.API.CourtReservation.ICRUDE;
+package com.API.CourtReservation.Interfaces;
 
 import com.API.CourtReservation.Models.Courts;
 import com.API.CourtReservation.Models.Reservations;

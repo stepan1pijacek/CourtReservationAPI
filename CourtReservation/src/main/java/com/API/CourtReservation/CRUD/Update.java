@@ -1,6 +1,7 @@
 package com.API.CourtReservation.CRUD;
 
-import com.API.CourtReservation.ICRUDE.IUpdate;
+import com.API.CourtReservation.Interfaces.IUpdate;
+import com.API.CourtReservation.Models.Reservations;
 
 public class Update implements IUpdate {
     @Override
@@ -9,7 +10,7 @@ public class Update implements IUpdate {
     }
 
     @Override
-    public boolean UpdateReservation(int phone) {
+    public boolean UpdateReservation(Reservations reservations) {
         return false;
     }
 }
