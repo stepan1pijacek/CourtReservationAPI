@@ -1,8 +1,16 @@
+/**
+ * @author: Stepan Pijacek
+ * @description: Model for court table
+ * */
 package com.API.CourtReservation.Models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Courts {
+
+    /**
+     * all variable were marked with JsonProperty annotation to match JSON request body
+     * */
     @JsonProperty("ID")
     private int ID;
     @JsonProperty("Surface")

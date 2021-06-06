@@ -1,3 +1,9 @@
+/**
+ * @author: Stepan Pijacek
+ * @description: Interface for Delete class
+ * */
+
+
 package com.API.CourtReservation.Interfaces;
 
 public interface IDelete {

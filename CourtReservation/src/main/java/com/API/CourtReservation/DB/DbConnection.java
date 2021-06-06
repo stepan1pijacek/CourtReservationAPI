@@ -1,3 +1,7 @@
+/**
+ * @author: Stepan Pijacek
+ * @description: DB connection class, for establishing and maintaining connection to db. In current mode it is double checked Singleton
+ * */
 package com.API.CourtReservation.DB;
 
 import com.API.CourtReservation.Config.MySQLConfig;

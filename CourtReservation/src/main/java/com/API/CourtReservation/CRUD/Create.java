@@ -1,3 +1,9 @@
+/**
+ * @author: Stepan Pijacek
+ * @description: Create class implementing ICreate
+ * */
+
+
 package com.API.CourtReservation.CRUD;
 
 import com.API.CourtReservation.DB.DbConnection;
@@ -10,7 +16,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Create implements ICreate {
-    //TODO: implement phone number check, if phone number exists once, update current newest reservation 204 , else create 201
+
+    /**
+     * @author: Stepan Pijacek
+     * @description: function for creating reservation
+     * @parameters: Reservation model
+     * */
+
     @Override
     public boolean CreateReservation(Reservations reservations) {
         Connection connection = DbConnection.getDbConnection();
@@ -32,7 +44,12 @@ public class Create implements ICreate {
         }
     }
 
-    //TODO: implement court check, if court already exists return 409
+    /**
+     * @author: Stepan Pijacek
+     * @description: function for creating court
+     * @parameters: Courts model
+     * */
+
     @Override
     public boolean CreateCourt(Courts courts) {
         Connection connection = DbConnection.getDbConnection();

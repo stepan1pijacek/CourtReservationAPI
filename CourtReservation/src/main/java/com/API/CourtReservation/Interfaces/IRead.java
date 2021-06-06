@@ -1,3 +1,8 @@
+/**
+ * @author: Stepan Pijacek
+ * @description: Interface for Read class
+ * */
+
 package com.API.CourtReservation.Interfaces;
 
 import com.API.CourtReservation.Models.Courts;
@@ -10,6 +15,4 @@ public interface IRead {
     List<Reservations> ReadCourtReservation(int id);
     List<Reservations> ReadReservationPerPhone(int phone);
     int getCourtPrice(int id);
-    boolean CourtExists(int id);
-    boolean phoneNumberExists(int phone);
 }

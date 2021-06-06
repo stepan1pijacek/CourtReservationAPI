@@ -1,4 +1,8 @@
-package com.API.CourtReservation.Utils;
+/**
+ * @author: Stepan Pijacek
+ * @description: Model for jwt request
+ * */
+package com.API.CourtReservation.Models;
 
 import java.io.Serializable;
 

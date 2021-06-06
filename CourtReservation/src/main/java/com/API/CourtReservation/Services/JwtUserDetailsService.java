@@ -1,3 +1,7 @@
+/**
+ * @author: Stepan Pijacek
+ * @description: Service for processing request body from JWT Authentication
+ * */
 package com.API.CourtReservation.Services;
 
 import org.springframework.security.core.userdetails.User;

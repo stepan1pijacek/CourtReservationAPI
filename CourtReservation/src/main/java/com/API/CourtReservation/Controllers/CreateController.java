@@ -1,3 +1,7 @@
+/**
+ * @author: Stepan Pijacek
+ * @description: Create controller for processing requests. Extends class Create
+ * */
 package com.API.CourtReservation.Controllers;
 
 import com.API.CourtReservation.CRUD.Create;
@@ -12,13 +16,20 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/create", consumes = "application/json", produces = "application/json")
 @CrossOrigin
-public class CreateController{
+public class CreateController extends Create{
 
+    //Called when game type is true = quads
     private static final Double PRICE_MULTIPLIER = 1.5;
-    private Create create = new Create();
-    private Read read = new Read();
+
+    private final Read read = new Read();
 
     //If game type = true, its a quads game, therefore price is multiplied
+    /**
+     * @author: Stepan Pijacek
+     * @description: endpoint for court reservation
+     * @parameters: Reservations model
+     * @returns: ResponseEntity<any>
+     * */
     @RequestMapping(value = "/createReservation", method = RequestMethod.POST)
     public ResponseEntity<?> createReservation(@RequestBody Reservations reservations){
         int priceOfCourt = 0;
@@ -35,7 +46,7 @@ public class CreateController{
                 } else {
                     reservations.setPrice(priceOfCourt * reservations.getTime());
                 }
-                create.CreateReservation(reservations);
+                CreateReservation(reservations);
                 return new ResponseEntity<>("Reservation has been created, your total price is:"+ reservations.getPrice(), HttpStatus.CREATED);
             }
         } catch(Exception e){
@@ -43,6 +54,12 @@ public class CreateController{
         }
     }
 
+    /**
+     * @author: Stepan Pijacek
+     * @description: endpoint for court creation
+     * @parameters: Courts model
+     * @returns: ResponseEntity<any>
+     * */
     @RequestMapping(
             value = "/createCourt", consumes = "application/json", produces = "application/json"
     )
@@ -51,7 +68,7 @@ public class CreateController{
             if(courts == null){
                 return new ResponseEntity<>("Body of the request is empty", HttpStatus.NO_CONTENT);
             } else {
-                create.CreateCourt(courts);
+                CreateCourt(courts);
                 return new ResponseEntity<>("Court has been created", HttpStatus.CREATED);
             }
         } catch (Exception e){

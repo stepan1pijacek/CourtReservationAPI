@@ -1,10 +1,15 @@
+/**
+ * @author: Stepan Pijacek
+ * @description: Controller for processing authentication request
+ * */
 package com.API.CourtReservation.Controllers;
 
-import com.API.CourtReservation.Utils.JwtRequest;
-import com.API.CourtReservation.Utils.JwtResponse;
-import com.API.CourtReservation.Utils.JwtTokenUtil;
+import com.API.CourtReservation.Models.JwtRequest;
+import com.API.CourtReservation.Models.JwtResponse;
 import com.API.CourtReservation.Services.JwtUserDetailsService;
+import com.API.CourtReservation.Utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -13,7 +18,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-//TODO: add return codes for JWT, also link for the website with tutorial: https://dzone.com/articles/spring-boot-security-json-web-tokenjwt-hello-world
 
 @RestController
 @CrossOrigin
@@ -38,7 +42,7 @@ public class JwtAuthenticationController {
 
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        return new ResponseEntity<>(new JwtResponse(token), HttpStatus.OK);
     }
 
     private void authenticate(String username, String password) throws Exception {

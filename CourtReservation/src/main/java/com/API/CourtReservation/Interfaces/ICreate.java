@@ -1,3 +1,8 @@
+/**
+ * @author: Stepan Pijacek
+ * @description: Interface for Create class
+ * */
+
 package com.API.CourtReservation.Interfaces;
 
 import com.API.CourtReservation.Models.Courts;

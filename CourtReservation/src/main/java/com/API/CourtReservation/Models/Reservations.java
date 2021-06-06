@@ -1,12 +1,19 @@
+/**
+ * @author: Stepan Pijacek
+ * @description: Model for reservation table
+ * */
+
 package com.API.CourtReservation.Models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
-import java.sql.Time;
 
 public class Reservations implements Serializable {
 
+    /**
+     * all variable were marked with JsonProperty annotation to match JSON request body
+     * */
     @JsonProperty("CourtsID")
     private int CourtsID;
     @JsonProperty("TimeInterval")

@@ -1,3 +1,7 @@
+/**
+ * @author: Stepan Pijacek
+ * @description: Utility for checking validity of provided inputs
+ * */
 package com.API.CourtReservation.Utils;
 
 public class CheckInput {
@@ -6,19 +10,11 @@ public class CheckInput {
             return false;
         } else if(time < 0){
             return false;
-        } else if(time > 480 ){
-            return false;
-        } else {
-            return true;
-        }
+        } else return time <= 480;
     }
 
     public static boolean checkPhoneNumber(int phone){
         int phoneNumberLength = String.valueOf(phone).length();
-        if(phoneNumberLength != 9){
-            return false;
-        } else{
-            return true;
-        }
+        return phoneNumberLength == 9;
     }
 }

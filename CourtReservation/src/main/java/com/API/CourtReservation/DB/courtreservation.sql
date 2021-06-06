@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: 127.0.0.1
--- Vytvořeno: Sob 05. čen 2021, 00:04
+-- Vytvořeno: Ned 06. čen 2021, 15:04
 -- Verze serveru: 10.4.11-MariaDB
 -- Verze PHP: 7.4.1
 
@@ -35,7 +35,14 @@ CREATE TABLE IF NOT EXISTS `courts` (
   `surface` varchar(16) NOT NULL,
   `perMinutePrice` int(255) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Vypisuji data pro tabulku `courts`
+--
+
+INSERT INTO `courts` (`ID`, `surface`, `perMinutePrice`) VALUES
+(1, 'Grass', 20);
 
 -- --------------------------------------------------------
 
@@ -48,11 +55,12 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `CourtID` int(11) NOT NULL,
   `TimeInterval` int(255) NOT NULL,
   `GameType` tinyint(1) NOT NULL,
-  `PhoneNumber` varchar(1024) NOT NULL,
+  `PhoneNumber` int(255) NOT NULL,
   `Surname` varchar(1024) NOT NULL,
+  `Price` double DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `fk_courts` (`CourtID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Omezení pro exportované tabulky

@@ -1,3 +1,7 @@
+/**
+ * @author: Stepan Pijacek
+ * @description: Utility for generating, validating and checking expiration of JWT
+ * */
 package com.API.CourtReservation.Utils;
 
 import io.jsonwebtoken.Claims;

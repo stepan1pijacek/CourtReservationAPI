@@ -1,10 +1,16 @@
+/**
+ * @author: Stepan Pijacek
+ * @description: Read class implementing IRead and ICheckForExistance
+ * */
+
+
 package com.API.CourtReservation.CRUD;
 
 import com.API.CourtReservation.DB.DbConnection;
+import com.API.CourtReservation.Interfaces.ICheckForExistance;
 import com.API.CourtReservation.Interfaces.IRead;
 import com.API.CourtReservation.Models.Courts;
 import com.API.CourtReservation.Models.Reservations;
-import org.springframework.security.access.prepost.PrePostAdviceReactiveMethodInterceptor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,10 +19,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Read implements IRead {
+public class Read implements IRead, ICheckForExistance {
     private List<Reservations> reservationsList = new ArrayList<>();
-    private List<Courts> courtsList = new ArrayList<>();
+    private final List<Courts> courtsList = new ArrayList<>();
     public Reservations reservations = new Reservations();
+
+    /**
+     * @author: Stepan Pijacek
+     * @description: function getting court list
+     * @parameters:
+     * @returns: courtsList
+     * */
 
     @Override
     public List<Courts> ReadCourtList() {
@@ -44,6 +57,14 @@ public class Read implements IRead {
             return null;
         }
     }
+
+
+    /**
+     * @author: Stepan Pijacek
+     * @description: function getting reservation list corresponding ro provided court ID
+     * @parameters: int id
+     * @Returns: reservationsList
+     * */
 
     @Override
     public List<Reservations> ReadCourtReservation(int id) {
@@ -77,6 +98,13 @@ public class Read implements IRead {
         }
     }
 
+    /**
+     * @author: Stepan Pijacek
+     * @description: function getting reservation list corresponding to provided phone number
+     * @parameters: int phone
+     * @Returns: reservationsList
+     * */
+
     @Override
     public List<Reservations> ReadReservationPerPhone(int phone) {
         Connection connection = DbConnection.getDbConnection();
@@ -105,6 +133,13 @@ public class Read implements IRead {
         }
     }
 
+    /**
+     * @author: Stepan Pijacek
+     * @description: function getting price per minute corresponding to the court with provided ID
+     * @parameters: int id
+     * @Returns: int
+     * */
+
     @Override
     public int getCourtPrice(int id) {
         Connection connection = DbConnection.getDbConnection();
@@ -122,6 +157,13 @@ public class Read implements IRead {
         return 0;
     }
 
+    /**
+     * @author: Stepan Pijacek
+     * @description: function checking existance of the court with corresponding to the court with provided ID
+     * @parameters: int id
+     * @Returns: true when court exists, else false
+     * */
+
     @Override
     public boolean CourtExists(int id) {
         Connection connection = DbConnection.getDbConnection();
@@ -138,6 +180,13 @@ public class Read implements IRead {
         }
         return false;
     }
+
+    /**
+     * @author: Stepan Pijacek
+     * @description: function checking existance of the phone number with corresponding to the court with phone number
+     * @parameters: int phone
+     * @Returns: int
+     * */
 
     @Override
     public boolean phoneNumberExists(int phone) {

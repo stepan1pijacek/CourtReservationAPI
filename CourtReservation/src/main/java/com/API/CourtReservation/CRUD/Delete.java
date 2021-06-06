@@ -1,3 +1,8 @@
+/**
+ * @author: Stepan Pijacek
+ * @description: Delete class implementing IDelete
+ * */
+
 package com.API.CourtReservation.CRUD;
 
 import com.API.CourtReservation.DB.DbConnection;
@@ -8,7 +13,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Delete implements IDelete {
-    //TODO: implement into controller code 204
+
+    /**
+     * @author: Stepan Pijacek
+     * @description: function for deleting reservation corresponding to phone number
+     * @parameters: int phoneNumber
+     * */
+
     @Override
     public boolean DeleteReservationByPhone(int phoneNumber) {
         Connection connection = DbConnection.getDbConnection();
@@ -24,6 +35,12 @@ public class Delete implements IDelete {
         }
     }
 
+    /**
+     * @author: Stepan Pijacek
+     * @description: function for deleting reservation corresponding to court ID
+     * @parameters: int courtID
+     * */
+
     @Override
     public boolean DeleteReservationByCourt(int courtID) {
         Connection connection = DbConnection.getDbConnection();
@@ -38,6 +55,12 @@ public class Delete implements IDelete {
             return false;
         }
     }
+
+    /**
+     * @author: Stepan Pijacek
+     * @description: function for deleting court corresponding to court ID
+     * @parameters: int courtID
+     * */
 
     @Override
     public boolean DeleteCourt(int courtID) {

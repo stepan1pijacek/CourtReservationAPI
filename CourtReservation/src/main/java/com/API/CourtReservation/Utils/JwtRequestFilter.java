@@ -1,3 +1,8 @@
+/**
+ * @author: Stepan Pijacek
+ * @description: Request filter
+ * */
+
 package com.API.CourtReservation.Utils;
 
 import com.API.CourtReservation.Services.JwtUserDetailsService;

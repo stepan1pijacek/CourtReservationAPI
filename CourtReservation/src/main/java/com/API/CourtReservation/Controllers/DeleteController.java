@@ -1,3 +1,7 @@
+/**
+ * @author: Stepan Pijacek
+ * @description: DELETE controller for processing DELETE requests, extends Delete class
+ * */
 package com.API.CourtReservation.Controllers;
 
 import com.API.CourtReservation.CRUD.Delete;
@@ -11,11 +15,16 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/delete", consumes = "application/json", produces = "application/json")
 @CrossOrigin
-public class DeleteController {
+public class DeleteController extends Delete{
 
-    private Delete delete = new Delete();
-    private Read read = new Read();
+    private final Read read = new Read();
 
+    /**
+     * @author: Stepan Pijacek
+     * @description: endpoint for deleting reservation corresponding to the phone number
+     * @parameters: Reservation model
+     * @returns: ResponseEntity<any>
+     * */
     @RequestMapping(value = "/deleteByPhone", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteReservationByPhone(@RequestBody Reservations reservations){
         try{
@@ -23,13 +32,19 @@ public class DeleteController {
                 return new ResponseEntity<>("Phone number does not exist", HttpStatus.NOT_FOUND);
             }
 
-            delete.DeleteReservationByPhone(reservations.getPhoneNumber());
+            DeleteReservationByPhone(reservations.getPhoneNumber());
             return new ResponseEntity<>("Reservation has been deleted", HttpStatus.ACCEPTED);
         } catch (Exception e){
             return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    /**
+     * @author: Stepan Pijacek
+     * @description: endpoint for deleting reservation corresponding to the court ID
+     * @parameters: Reservation model
+     * @returns: ResponseEntity<any>
+     * */
     @RequestMapping(value = "/deleteByCourt", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteReservationByCourt(@RequestBody Reservations reservations){
         try{
@@ -37,13 +52,19 @@ public class DeleteController {
                 return new ResponseEntity<>("Court does not exist", HttpStatus.NOT_FOUND);
             }
 
-            delete.DeleteReservationByCourt(reservations.getCourts());
+            DeleteReservationByCourt(reservations.getCourts());
             return  new ResponseEntity<>("Reservation has been deleted", HttpStatus.ACCEPTED);
         } catch (Exception e){
             return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    /**
+     * @author: Stepan Pijacek
+     * @description: endpoint for deleting court corresponding to the court ID
+     * @parameters: Courts model
+     * @returns: ResponseEntity<any>
+     * */
     @RequestMapping(value = "/deleteCourt", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteCourt(@RequestBody Courts courts){
         try{
@@ -51,7 +72,7 @@ public class DeleteController {
                 return new ResponseEntity<>("Court does not exist", HttpStatus.NOT_FOUND);
             }
 
-            delete.DeleteCourt(courts.getID());
+            DeleteCourt(courts.getID());
             return new ResponseEntity<>("Court has been deleted", HttpStatus.ACCEPTED);
         } catch (Exception e){
             return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
