@@ -22,7 +22,6 @@ import java.util.List;
 public class Read implements IRead, ICheckForExistance {
     private List<Reservations> reservationsList = new ArrayList<>();
     private final List<Courts> courtsList = new ArrayList<>();
-    public Reservations reservations = new Reservations();
 
     /**
      * @author: Stepan Pijacek
@@ -35,7 +34,6 @@ public class Read implements IRead, ICheckForExistance {
     public List<Courts> ReadCourtList() {
         Connection connection = DbConnection.getDbConnection();
         String read = "SELECT * FROM courts";
-        courtsList.clear();
 
         try(PreparedStatement prSmt = connection.prepareStatement(read)){
             ResultSet rs = prSmt.executeQuery();
@@ -71,25 +69,18 @@ public class Read implements IRead, ICheckForExistance {
     public List<Reservations> ReadCourtReservation(int id) {
         Connection connection = DbConnection.getDbConnection();
         String read = "SELECT * FROM reservation WHERE CourtID = ?";
-        reservationsList.clear();
-        reservations = null;
 
         try(PreparedStatement prSmt = connection.prepareStatement(read)){
             prSmt.setInt(1, id);
             ResultSet rs = prSmt.executeQuery();
             while(rs.next()){
-                int timeInterval = rs.getInt("TimeInterval");
-                boolean gameType = rs.getBoolean("GameType");
-                int phoneNumber = rs.getInt("PhoneNumber");
-                String surname = rs.getString("Surname");
-                int price = rs.getInt("price");
-
+                Reservations reservations = new Reservations();
                 reservations.setCourtsID(id);
-                reservations.setTimeInterval(timeInterval);
-                reservations.setGameType(gameType);
-                reservations.setPhoneNumber(phoneNumber);
-                reservations.setSurname(surname);
-                reservations.setPrice(price);
+                reservations.setTimeInterval(rs.getInt("TimeInterval"));
+                reservations.setGameType(rs.getBoolean("GameType"));
+                reservations.setPhoneNumber(rs.getInt("PhoneNumber"));
+                reservations.setSurname(rs.getString("Surname"));
+                reservations.setPrice(rs.getInt("price"));
 
                 reservationsList.add(reservations);
             }
@@ -111,12 +102,12 @@ public class Read implements IRead, ICheckForExistance {
     public List<Reservations> ReadReservationPerPhone(int phone) {
         Connection connection = DbConnection.getDbConnection();
         String read = "SELECT * FROM reservation WHERE PhoneNumber = ?";
-        reservationsList.clear();
 
         try(PreparedStatement prSmt = connection.prepareStatement(read)){
             prSmt.setInt(1,phone);
             ResultSet rs = prSmt.executeQuery();
             while(rs.next()){
+                Reservations reservations = new Reservations();
                 reservations.setCourtsID(rs.getInt("CourtID"));
                 reservations.setTimeInterval(rs.getInt("TimeInterval"));
                 reservations.setGameType(rs.getBoolean("GameType"));

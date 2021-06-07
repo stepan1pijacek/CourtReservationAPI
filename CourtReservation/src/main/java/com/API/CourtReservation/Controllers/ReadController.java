@@ -88,15 +88,11 @@ public class ReadController extends Read{
     @JsonProperty("ReadReservationPerCourt")
     @RequestMapping(value = "/readReservationPerCourt", method = RequestMethod.GET, consumes = "application/json")
     public ResponseEntity<?> readReservationByCourtID(@RequestBody Reservations reservations){
-        List<Reservations> courtReservation = null;
-        courtReservation.clear();
         try{
             if(CourtExists(reservations.getCourts()) == false){
                 return new ResponseEntity<>("Court number does not exist", HttpStatus.NOT_FOUND);
             }
-            courtReservation = ReadCourtReservation(reservations.getCourts());
-            reservations.setClear();
-            return new ResponseEntity<>(courtReservation, HttpStatus.OK);
+            return new ResponseEntity<>(ReadCourtReservation(reservations.getCourts()), HttpStatus.OK);
         } catch (Exception e){
             e.printStackTrace();
             return new ResponseEntity<>("Something went wrong", HttpStatus.OK);
