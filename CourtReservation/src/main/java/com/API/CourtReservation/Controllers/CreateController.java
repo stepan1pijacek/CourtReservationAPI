@@ -43,11 +43,10 @@ public class CreateController extends Create{
                 priceOfCourt = read.getCourtPrice(reservations.getCourts());
                 if(reservations.getGameType() == true){
                     reservations.setPrice(priceOfCourt * reservations.getTime() * PRICE_MULTIPLIER);
-                } else {
-                    reservations.setPrice(priceOfCourt * reservations.getTime());
                 }
+                reservations.setPrice(priceOfCourt * reservations.getTime());
                 CreateReservation(reservations);
-                return new ResponseEntity<>("Reservation has been created, your total price is:"+ reservations.getPrice(), HttpStatus.CREATED);
+                return new ResponseEntity<>("{\n Status: Reservation created successfully, \n Your price: " +reservations.getPrice() + " \n}", HttpStatus.CREATED);
             }
         } catch(Exception e){
             return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);

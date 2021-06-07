@@ -35,9 +35,4 @@ class CourtReservationApplicationTests {
 		assertThat(jwtController).isNotNull();
 	}
 
-	@Test
-	public void getAuthorization() throws Exception{
-		JwtRequest request = new JwtRequest("javainuse", "password");
-		assertEquals(HttpStatus.OK.value(), "");
-	}
 }

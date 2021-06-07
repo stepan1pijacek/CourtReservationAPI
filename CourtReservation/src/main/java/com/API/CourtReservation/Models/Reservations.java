@@ -8,6 +8,7 @@ package com.API.CourtReservation.Models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
+import java.sql.Time;
 
 public class Reservations implements Serializable {
 
@@ -26,6 +27,7 @@ public class Reservations implements Serializable {
     private int PhoneNumber;
     @JsonProperty("Surname")
     private String Surname;
+    @JsonProperty("Price")
     private double Price;
 
     public Reservations(){}
@@ -45,4 +47,13 @@ public class Reservations implements Serializable {
     public void setGameType(boolean gameType) { GameType = gameType; }
     public void setPhoneNumber(int phoneNumber) { PhoneNumber = phoneNumber; }
     public void setSurname(String surname) { Surname = surname; }
+
+    public void setClear(){
+        Surname = null;
+        Price = 0;
+        CourtsID = 0;
+        TimeInterval = 0;
+        GameType = false;
+        PhoneNumber = 0;
+    }
 }

@@ -35,6 +35,7 @@ public class Read implements IRead, ICheckForExistance {
     public List<Courts> ReadCourtList() {
         Connection connection = DbConnection.getDbConnection();
         String read = "SELECT * FROM courts";
+        courtsList.clear();
 
         try(PreparedStatement prSmt = connection.prepareStatement(read)){
             ResultSet rs = prSmt.executeQuery();
@@ -70,6 +71,8 @@ public class Read implements IRead, ICheckForExistance {
     public List<Reservations> ReadCourtReservation(int id) {
         Connection connection = DbConnection.getDbConnection();
         String read = "SELECT * FROM reservation WHERE CourtID = ?";
+        reservationsList.clear();
+        reservations = null;
 
         try(PreparedStatement prSmt = connection.prepareStatement(read)){
             prSmt.setInt(1, id);
@@ -81,7 +84,6 @@ public class Read implements IRead, ICheckForExistance {
                 String surname = rs.getString("Surname");
                 int price = rs.getInt("price");
 
-                reservations = new Reservations();
                 reservations.setCourtsID(id);
                 reservations.setTimeInterval(timeInterval);
                 reservations.setGameType(gameType);
@@ -109,14 +111,12 @@ public class Read implements IRead, ICheckForExistance {
     public List<Reservations> ReadReservationPerPhone(int phone) {
         Connection connection = DbConnection.getDbConnection();
         String read = "SELECT * FROM reservation WHERE PhoneNumber = ?";
-        reservationsList = new ArrayList<>();
-
+        reservationsList.clear();
 
         try(PreparedStatement prSmt = connection.prepareStatement(read)){
             prSmt.setInt(1,phone);
             ResultSet rs = prSmt.executeQuery();
             while(rs.next()){
-                reservations = new Reservations();
                 reservations.setCourtsID(rs.getInt("CourtID"));
                 reservations.setTimeInterval(rs.getInt("TimeInterval"));
                 reservations.setGameType(rs.getBoolean("GameType"));
