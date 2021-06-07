@@ -38,14 +38,10 @@ public class Read implements IRead, ICheckForExistance {
         try(PreparedStatement prSmt = connection.prepareStatement(read)){
             ResultSet rs = prSmt.executeQuery();
             while (rs.next()){
-                int id = rs.getInt("ID");
-                String surface = rs.getString("surface");
-                int perMinutePrice = rs.getInt("perMinutePrice");
-
                 Courts courts = new Courts();
-                courts.setID(id);
-                courts.setSurface(surface);
-                courts.setPricePerMin(perMinutePrice);
+                courts.setID(rs.getInt("ID"));
+                courts.setSurface(rs.getString("surface"));
+                courts.setPricePerMin(rs.getInt("perMinutePrice"));
 
                 courtsList.add(courts);
             }
@@ -138,7 +134,7 @@ public class Read implements IRead, ICheckForExistance {
         try(PreparedStatement prSmt = connection.prepareStatement(read)){
             prSmt.setInt(1,id);
             ResultSet rs = prSmt.executeQuery();
-            while (rs.next()){
+            if(rs.next()){
                 return rs.getInt(1);
             }
         } catch (SQLException e){
@@ -162,14 +158,15 @@ public class Read implements IRead, ICheckForExistance {
         try(PreparedStatement prSmt = connection.prepareStatement(read)){
             prSmt.setInt(1,id);
             ResultSet rs = prSmt.executeQuery();
-            while (rs.next()){
+            if(rs.next()){
                 return true;
+            } else {
+                return false;
             }
         } catch (SQLException e){
             e.printStackTrace();
             return false;
         }
-        return false;
     }
 
     /**
@@ -186,13 +183,14 @@ public class Read implements IRead, ICheckForExistance {
         try(PreparedStatement prSmt = connection.prepareStatement(read)){
             prSmt.setInt(1,phone);
             ResultSet rs = prSmt.executeQuery();
-            while (rs.next()){
+            if(rs.next()){
                 return true;
+            } else {
+                return false;
             }
         } catch (SQLException e){
             e.printStackTrace();
             return false;
         }
-        return false;
     }
 }

@@ -47,13 +47,4 @@ public class Reservations implements Serializable {
     public void setGameType(boolean gameType) { GameType = gameType; }
     public void setPhoneNumber(int phoneNumber) { PhoneNumber = phoneNumber; }
     public void setSurname(String surname) { Surname = surname; }
-
-    public void setClear(){
-        Surname = null;
-        Price = 0;
-        CourtsID = 0;
-        TimeInterval = 0;
-        GameType = false;
-        PhoneNumber = 0;
-    }
 }

@@ -2,7 +2,7 @@
  * @author: Stepan Pijacek
  * @description: Read controller for processing READ requests, extends Read class
  * @problem: Unfortunately, this controller has bug that I can't figure out, so if you know how to fix it, feel free to tell me.
- * Once you sen request with Postman it returns list as it should, but that list contains duplicates as seen below.
+ * Once you send request with Postman it returns list as it should, but that list contains duplicates as seen below.
  *     {
  *         "time": 1,
  *         "courts": 1,
@@ -48,8 +48,7 @@ public class ReadController extends Read{
     @RequestMapping(value = "/readCourtList", method = RequestMethod.GET)
     public ResponseEntity<?> readCourtList(){
         try{
-            List<?> courtList = ReadCourtList();
-            return new ResponseEntity<>(courtList, HttpStatus.OK);
+            return new ResponseEntity<>(ReadCourtList(), HttpStatus.OK);
         } catch (Exception e){
             e.printStackTrace();
             return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
