@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: 127.0.0.1
--- Vytvořeno: Ned 06. čen 2021, 15:04
+-- Vytvořeno: Pon 07. čen 2021, 17:23
 -- Verze serveru: 10.4.11-MariaDB
 -- Verze PHP: 7.4.1
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Databáze: `courtreservation`
 --
-CREATE DATABASE IF NOT EXISTS `courtreservation` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `courtreservation`;
 
 -- --------------------------------------------------------
 
@@ -35,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `courts` (
   `surface` varchar(16) NOT NULL,
   `perMinutePrice` int(255) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Vypisuji data pro tabulku `courts`
@@ -60,7 +58,19 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `Price` double DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `fk_courts` (`CourtID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Vypisuji data pro tabulku `reservation`
+--
+
+INSERT INTO `reservation` (`ID`, `CourtID`, `TimeInterval`, `GameType`, `PhoneNumber`, `Surname`, `Price`) VALUES
+(3, 1, 480, 0, 123456789, 'Honza', 9600),
+(4, 1, 480, 1, 123456789, 'Honza', 14400),
+(5, 1, 480, 1, 123456789, 'Honza', 14400),
+(6, 1, 1, 0, 123456789, 'Honza', 20),
+(7, 1, 1, 0, 123456789, 'Honza', 20),
+(10, 1, 78, 0, 789456323, 'Igi', 1560);
 
 --
 -- Omezení pro exportované tabulky
